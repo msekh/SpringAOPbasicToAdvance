@@ -7,6 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import io.mtech.aop.javaConfig.DemoConfig;
 import io.mtech.aop.repo.AccountRepo;
+import io.mtech.aop.repo.MembershipRepo;
 
 @SpringBootApplication
 public class SpringBootAopApplication implements CommandLineRunner {
@@ -23,15 +24,20 @@ public class SpringBootAopApplication implements CommandLineRunner {
 
 		// get the bean from spring container
 		AccountRepo theAccountDAO = ctx.getBean("accountRepo", AccountRepo.class);
-		
+
+		// get the Membership bean from spring container
+		MembershipRepo theMembershipRepo = ctx.getBean("membershipRepo", MembershipRepo.class);
+
 		// call the business method
 		theAccountDAO.addAccount();
 
-		// do it again!
-		System.out.println("\nlet's call it again!\n");
+		//call membership business method
+		theMembershipRepo.addSillyMember();
+
+		// do it again! System.out.println("\nlet's call it again!\n");
 
 		// call the business method again
-		theAccountDAO.addAccount();
+		//theAccountDAO.addAccount();
 
 		// close the context
 		ctx.close();
