@@ -2,6 +2,7 @@ package io.mtech.aop.aspect;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,18 +28,24 @@ public class DemoLoggingAspect {
 	// @Before("execution(public void io.mtech.aop.repo..*.add*())")
 	// @Before("execution(* add*())")
 
-	// pointcut with parameter matches only AccountRepo
-	// @Before("execution(* add*(io.mtech.aop.entity.Account, ..))")
+	// pointcut with parameter and without parameter matches only AccountRepo
+	// @Before(value = "execution(* io.mtech.aop..*.AccountRepo..*(..))")
 
 	// pointcut with parameter matches for AccountRepo and MemebershipRepo
-	@Before(value = "execution(* io.mtech.aop..*.*(..))")
+	// @Before(value = "execution(* io.mtech.aop..*.*(..))")
 
 	// only matches for AccountRepo Method
 	// @Before(value = "execution(* io.mtech.aop.repo.AccountRepo.*(..))")
+
 	// matches for AccountRepo and MemberShipRepo, addAccount Method--->pointcut
-	// @Before("execution(* io.mtech.aop.repo..*(..))")
+	@Pointcut("forDaoPackage()")
 	public void beforeAdAccountAdvice() {
 		log.info("\n=====>>> Executing @Before advice on addAccount()");
 	}
 
+	//@Before("execution(* *io.mtech.aop.repo.*.*(..))")
+	@Before("execution(* io.mtech.aop..*.AccountRepo..*(..))")
+	private void forDaoPackage() {
+		log.info("\n=====>>> Executing @Before advice on addAccount() for all package.");
+	}
 }

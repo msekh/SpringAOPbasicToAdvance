@@ -32,7 +32,7 @@ public class SpringBootAopApplication implements CommandLineRunner {
 		Account myAccount = new Account();
 
 		// call the business method
-		//theAccountRepo.addAccount(myAccount, true);
+		theAccountRepo.addAccount(myAccount, true);
 		theAccountRepo.doWork();
 
 		//call membership business method
