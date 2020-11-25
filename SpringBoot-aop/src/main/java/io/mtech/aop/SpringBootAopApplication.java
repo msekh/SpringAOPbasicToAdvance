@@ -24,12 +24,19 @@ public class SpringBootAopApplication implements CommandLineRunner {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DemoConfig.class);
 
 		// get the bean from spring container
+<<<<<<< HEAD
 		AccountRepo theAccountRepo = ctx.getBean("accountRepo", AccountRepo.class);
 
 		// get the Membership bean from spring container
 		MembershipRepo theMembershipRepo = ctx.getBean("membershipRepo", MembershipRepo.class);
 		
 		Account myAccount = new Account();
+=======
+		AccountRepo theAccountDAO = ctx.getBean("accountRepo", AccountRepo.class);
+
+		// get the Membership bean from spring container
+		MembershipRepo theMembershipRepo = ctx.getBean("membershipRepo", MembershipRepo.class);
+>>>>>>> 887aaf3c0343eddab08ebd3b0f4bc930542fdf22
 
 		// call the business method
 		//theAccountRepo.addAccount(myAccount, true);
@@ -39,6 +46,12 @@ public class SpringBootAopApplication implements CommandLineRunner {
 		theMembershipRepo.addSillyMember();
 		theMembershipRepo.gotoSleep();
 
+<<<<<<< HEAD
+=======
+		//call membership business method
+		theMembershipRepo.addSillyMember();
+
+>>>>>>> 887aaf3c0343eddab08ebd3b0f4bc930542fdf22
 		// do it again! System.out.println("\nlet's call it again!\n");
 
 		// call the business method again

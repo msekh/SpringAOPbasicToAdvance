@@ -6,7 +6,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 
 import io.mtech.aop.aspect.DemoLoggingAspect;
+<<<<<<< HEAD
 import io.mtech.aop.entity.Account;
+=======
+>>>>>>> 887aaf3c0343eddab08ebd3b0f4bc930542fdf22
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @SpringBootTest(classes = {AccountRepo.class, DemoLoggingAspect.class})
@@ -16,6 +19,7 @@ class AccountRepoTest {
 	private AccountRepo accountRepo;
 	@Autowired
 	private DemoLoggingAspect demoAspect;
+<<<<<<< HEAD
 	@Autowired
 	private Account account;
 	
@@ -26,5 +30,12 @@ class AccountRepoTest {
 		account.setLevel("Begginer");
 		demoAspect.beforeAdAccountAdvice();
 		//accountRepo.addAccount(account, true);
+=======
+
+	@Test
+	public void invokeAOPStuff() {
+		demoAspect.beforeAdAccountAdvice();
+		accountRepo.addAccount();
+>>>>>>> 887aaf3c0343eddab08ebd3b0f4bc930542fdf22
 	}
 }
