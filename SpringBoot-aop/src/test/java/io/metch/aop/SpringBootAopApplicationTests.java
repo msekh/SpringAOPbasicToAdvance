@@ -22,7 +22,7 @@ class SpringBootAopApplicationTests {
 	@Test
 	public void invokeAOPStuff() {
 		demoAspect.beforeAdAccountAdvice();
-		accountRepo.addAccount();
+		//accountRepo.addAccount();
 
 	}
 
