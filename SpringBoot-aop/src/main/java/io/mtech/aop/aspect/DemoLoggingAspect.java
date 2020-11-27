@@ -23,10 +23,6 @@ public class DemoLoggingAspect {
 
 	// matches for AccountRepo and MemberShipRepo, addAccount Method
 	// @Before("execution(public void io.mtech.aop.repo..*.addAccount())")
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> cd81ace4a0ac67aa344f01f057afed3f3984894b
 
 	// matches for AccountRepo and MemberShipRepo, addAccount Method
 	// @Before("execution(public void io.mtech.aop.repo..*.add*())")
@@ -36,17 +32,7 @@ public class DemoLoggingAspect {
 	// @Before(value = "execution(* io.mtech.aop..*.AccountRepo..*(..))")
 
 	// pointcut with parameter matches for AccountRepo and MemebershipRepo
-<<<<<<< HEAD
 	// @Before(value = "execution(* io.mtech.aop..*.*(..))")
-=======
-	@Before(value = "execution(* io.mtech.aop..*.*(..))")
-=======
-	
-	// matches for AccountRepo and MemberShipRepo, addAccount Method
-	//@Before("execution(public void io.mtech.aop.repo..*.add*())")
-	@Before("execution(* add*())")
->>>>>>> 887aaf3c0343eddab08ebd3b0f4bc930542fdf22
->>>>>>> cd81ace4a0ac67aa344f01f057afed3f3984894b
 
 	// only matches for AccountRepo Method
 	// @Before(value = "execution(* io.mtech.aop.repo.AccountRepo.*(..))")
