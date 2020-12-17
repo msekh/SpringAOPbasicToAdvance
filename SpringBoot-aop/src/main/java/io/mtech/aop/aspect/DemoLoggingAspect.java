@@ -38,14 +38,20 @@ public class DemoLoggingAspect {
 	// @Before(value = "execution(* io.mtech.aop.repo.AccountRepo.*(..))")
 
 	// matches for AccountRepo and MemberShipRepo, addAccount Method--->pointcut
-	@Pointcut("forDaoPackage()")
+	@Before("forDaoPackage()")
 	public void beforeAdAccountAdvice() {
 		log.info("\n=====>>> Executing @Before advice on addAccount()");
 	}
 
 	//@Before("execution(* *io.mtech.aop.repo.*.*(..))")
-	@Before("execution(* io.mtech.aop..*.AccountRepo..*(..))")
+	@Pointcut("execution(* io.mtech.aop..*.AccountRepo..*(..))")
 	private void forDaoPackage() {
-		log.info("\n=====>>> Executing @Before advice on addAccount() for all package.");
+		//log.info("\n=====>>> Executing @Before advice on addAccount() for all package.");
 	}
+	
+	@Before("forDaoPackage()")
+	public void performApiAnalytics() {
+		log.info("\n=====>>> Performing API analytics");
+	}
+
 }
