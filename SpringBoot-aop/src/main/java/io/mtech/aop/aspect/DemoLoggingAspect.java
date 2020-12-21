@@ -42,6 +42,7 @@ public class DemoLoggingAspect {
 	// @Before(value = "execution(* io.mtech.aop.repo.AccountRepo.*(..))")
 
 	// matches for AccountRepo and MemberShipRepo, addAccount Method--->pointcut
+<<<<<<< HEAD
 
 	// @Pointcut("execution(* *io.mtech.aop.repo.*.*(..))")
 	@Pointcut("execution(* io.mtech.aop..*.AccountRepo..*(..))")
@@ -51,13 +52,40 @@ public class DemoLoggingAspect {
 	}
 
 	@Before("forDaoPackage()")
+||||||| merged common ancestors
+	@Pointcut("forDaoPackage()")
+=======
+	@Before("forDaoPackage()")
+>>>>>>> AOP-PointCut-Declaration
 	public void beforeAdAccountAdvice() {
 		log.info("\n=====>>> Executing @Before advice on addAccount()");
 	}
 
+<<<<<<< HEAD
+	@Before("forDaoPackage()")
+	public void performApiAnalytics() {
+		log.info("\n=====>>> Performing API analytics");
+||||||| merged common ancestors
+	//@Before("execution(* *io.mtech.aop.repo.*.*(..))")
+	@Before("execution(* io.mtech.aop..*.AccountRepo..*(..))")
+	private void forDaoPackage() {
+		log.info("\n=====>>> Executing @Before advice on addAccount() for all package.");
+=======
+	//@Before("execution(* *io.mtech.aop.repo.*.*(..))")
+	@Pointcut("execution(* io.mtech.aop..*.AccountRepo..*(..))")
+	private void forDaoPackage() {
+		//log.info("\n=====>>> Executing @Before advice on addAccount() for all package.");
+>>>>>>> AOP-PointCut-Declaration
+	}
+<<<<<<< HEAD
+
+||||||| merged common ancestors
+=======
+	
 	@Before("forDaoPackage()")
 	public void performApiAnalytics() {
 		log.info("\n=====>>> Performing API analytics");
 	}
 
+>>>>>>> AOP-PointCut-Declaration
 }

@@ -28,21 +28,28 @@ public class SpringBootAopApplication implements CommandLineRunner {
 
 		// get the Membership bean from spring container
 		MembershipRepo theMembershipRepo = ctx.getBean("membershipRepo", MembershipRepo.class);
-		
+
 		Account myAccount = new Account();
 
 		// call the business method
 		theAccountRepo.addAccount(myAccount, true);
 		theAccountRepo.doWork();
-
-		//call membership business method
+		
+		// call the AccountRepo getter/setter Method
+		theAccountRepo.setName("Foobar");
+		theAccountRepo.setServiceCode("Silver");
+		
+		String name = theAccountRepo.getName();
+		String code =theAccountRepo.getServiceCode();
+		
+		// call membership business method
 		theMembershipRepo.addSillyMember();
 		theMembershipRepo.gotoSleep();
 
 		// do it again! System.out.println("\nlet's call it again!\n");
 
 		// call the business method again
-		//theAccountDAO.addAccount();
+		// theAccountDAO.addAccount();
 
 		// close the context
 		ctx.close();
