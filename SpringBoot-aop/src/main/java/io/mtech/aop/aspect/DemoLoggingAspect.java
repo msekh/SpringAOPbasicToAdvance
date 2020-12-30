@@ -3,13 +3,11 @@ package io.mtech.aop.aspect;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Aspect
-@EnableAspectJAutoProxy
 @Component
 @Slf4j
 public class DemoLoggingAspect {
@@ -40,21 +38,40 @@ public class DemoLoggingAspect {
 	// @Before(value = "execution(* io.mtech.aop.repo.AccountRepo.*(..))")
 
 	// matches for AccountRepo and MemberShipRepo, addAccount Method--->pointcut
-	// @Pointcut("execution(* *io.mtech.aop.repo.*.*(..))")
-	@Pointcut("execution(* io.mtech.aop..*.AccountRepo..*(..))")
+	
+
 	// @Pointcut("execution(* io.mtech.aop..*.AccountRepo..*(..))")
+	@Pointcut("execution(* io.mtech.aop.repo.*.*(..))")
 	private void forDaoPackage() {
-		//log.info("\n=====>>> Executing @Before advice on addAccount() for all package.");
+		// log.info("\n=====>>> Executing @Before advice on addAccount() for all
+		// package.");
 	}
 
-	@Before("forDaoPackage()")
-	public void beforeAdAccountAdvice() {
-		log.info("\n=====>>> Executing @Before advice on addAccount()");
+	// Create pointcut for getter methods
+	// @Pointcut("execution(* io.mtech.aop..*.AccountRepo..*.get*(..))")
+	@Pointcut("execution(* io.mtech.aop.repo.*.get*(..))")
+	private void getter() {
 	}
 
-	@Before("forDaoPackage()")
-	public void performApiAnalytics() {
-		log.info("\n=====>>> Performing API analytics");
+	// Create pointcut for setter methods
+	// @Pointcut("execution(* io.mtech.aop..*.AccountRepo..*.set*(..))")
+	@Pointcut("execution(* io.mtech.aop.repo.*.set*(..))")
+	private void setter() {
 	}
+
+	// create pointcut: Include Package ... Exclude getter/setter
+	@Pointcut("forDaoPackage() && !(getter() || setter())")
+	private void forDaoPackageNoGetterSetter() {
+	}
+	  //@Before("forDaoPackage()")
+		@Before("forDaoPackageNoGetterSetter()")
+		public void beforeAdAccountAdvice() {
+			log.info("\n=====>>> Executing @Before advice on addAccount()");
+		}
+
+		// @Before("forDaoPackage()")
+		@Before("forDaoPackageNoGetterSetter()")
+		public void performApiAnalytics() {
+			log.info("\n=====>>> Performing API analytics");
+		}
 }
-
